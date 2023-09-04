@@ -1,7 +1,8 @@
-html, body {
+html, body,frame {
     background-color:black ;
     overflow-x: hidden;
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
@@ -22,6 +23,7 @@ html, body {
     margin-bottom: 40px;
     margin-top: 50px;
 }
+
 
 
 .createPost textarea{

@@ -43,5 +43,37 @@ $(document).ready(function() {
         });
                 
     });
+
+
+    $(".chat-input").find("button").click(function () {
+        var inputValue = $(this).siblings(".custom-input").val();
+        var fID = $(this).siblings(".fid").attr("value");
+        $.ajax({
+            url: "php/sendMessage.php",
+            method: "POST",
+            data: { text:inputValue,fid:fID},
+            success: function(response) {
+                loadMessages();
+            }
+        });
+    });
+
+    function loadMessages() {
+        var fID = $(".chat-input").find("button").siblings(".fid").attr("value");
+        $.ajax({
+            url: "php/getMessages.php",
+            method: "POST",
+            data: { fid:fID},
+            success: function(response) 
+            {
+                $(".sentMessages").html(response);
+            }
+        });
+    }
+
+    setInterval(function() {
+        loadMessages();
+    }, 1000);
+
 });
 

@@ -43,6 +43,8 @@ function createPost(){
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/post.css">
     <link rel="stylesheet" href="css/post.css">
+    <link rel="stylesheet" href="css/profile.css">
+
 
 </head>
 <body>
@@ -51,7 +53,6 @@ function createPost(){
 
     ?>
     
-    <div class="frame container">
         <?php
             if(isset($_GET["page"])){
 
@@ -63,31 +64,34 @@ function createPost(){
                     include("register.php");
                 }
 
+                if($_GET["page"] =="profile"){
+                    include("profile.php");
+                }
+
             }else{
-                // $first = new Post(2, $conn);
-                // $first->drawPost();
+                echo '<div class="container">';
 
-                if(isset($_SESSION["userID"])){
-                    createPost();
-                }
-
-                $query = "SELECT `id`, `user_id`, `title`, `content`, `created_at`, `upvote`, `downvote` FROM `posts`";
-                $result = $conn->query($query);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $postObject = new Post($row["id"], $conn);
-                        $postObject->drawPost();
+                    if(isset($_SESSION["userID"])){
+                        createPost();
                     }
-                } else {
-                    echo "Nincsenek bejegyzések.";
-                }
+
+                    $query = "SELECT `id`, `user_id`, `title`, `content`, `created_at`, `upvote`, `downvote` FROM `posts`";
+                    $result = $conn->query($query);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $postObject = new Post($row["id"], $conn);
+                            $postObject->drawPost();
+                        }
+                    } else {
+                        echo "Nincsenek bejegyzések.";
+                    }
+                echo '</div>';
 
             }
             
         ?>
 
-    </div>
 
     
 
@@ -98,6 +102,7 @@ function createPost(){
     <script src="js/navbar.js"></script>
     <script src="js/ajaxCalls.js"></script>
     <script src="js/postAnimations.js"></script>
+
 
 
 </body>
