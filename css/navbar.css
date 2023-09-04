@@ -1,0 +1,83 @@
+.navbar {
+    background-color: #1A1A1B;
+    transition: background-color 0.3s ease;
+    font-size: 16px !important;
+    height: 80px;
+}
+
+.navbar-toggler-icon {
+    background-color: white;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: white;
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: white;
+}
+
+.custom-toggler.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon {
+    transform: rotate(0deg);
+    background-color: transparent;
+}
+
+.navbar-nav .nav-item {
+    margin: 0 20px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 17px;
+    color: white;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.navbar-nav .nav-link:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #FF4500;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover:before {
+    transform: scaleX(1);
+}
+
+.dropdown-menu {
+    height: auto !important;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.dropdown-item {
+    color: white;
+    font-size: 14px;
+}
+
+.navbar-brand {
+    margin-right: 25px;
+}
+
+.reddit-logo {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+    height: 90%;
+}
+
+.reddit-logo img {
+    max-width: 80px;
+    margin-right: 15px;
+}

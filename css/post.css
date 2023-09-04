@@ -1,0 +1,22 @@
+.postContainer{
+    background:rgb(26,26,27);
+    padding: 20px;
+    border: 1px solid rgb(150,150,150);
+    margin-top: 10px;
+    border-radius: 7px;
+}
+
+.title,.textContent{
+    color: rgb(150,150,150)
+}
+
+.postVotes button{
+    background: transparent !important;
+    color:white;
+    font-size:22px;
+    border: none;
+}
+
+.title,.textContent,.postVotes{
+    margin-top:20px;
+}
