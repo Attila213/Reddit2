@@ -84,7 +84,10 @@ class Post {
         echo '<div class="postContainer">
             <div class="title"><h1>'.$this->getTitle().'</h1></div>
             <div class="textContent">'.$this->getContent().'</div>
-            <div class="imagesContainer" images="'.$images.'">
+            <div class="imagesContainer" count="0" images="'.$images.'">
+                <button class="dropdown-item nextImage">Következő kép</button>
+                <button class="dropdown-item previousImage">Előző kép</button>
+    
                 <img src="'.$images_arr[0].'">
             </div>
             <div class="postVotes">
