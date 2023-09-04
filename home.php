@@ -1,7 +1,7 @@
 <?php
 if(!isset($_SESSION)) {session_start();} 
 require_once("config.php");
-$folderPath = 'php/';
+$folderPath = 'php/Classes/';
 $phpFiles = glob($folderPath . '*.php');
 
 foreach ($phpFiles as $phpFile) {
@@ -49,7 +49,7 @@ function createPost(){
 </head>
 <body>
     <?php
-        include("navbar.php");
+        include("includes/navbar.php");
 
     ?>
     
@@ -57,16 +57,21 @@ function createPost(){
             if(isset($_GET["page"])){
 
                 if($_GET["page"] =="login"){
-                    include("login.php");
+                    include("includes/login.php");
                 }
 
                 if($_GET["page"] =="register"){
-                    include("register.php");
+                    include("includes/register.php");
                 }
 
                 if($_GET["page"] =="profile"){
-                    include("profile.php");
+                    include("includes/profile.php");
                 }
+
+                if($_GET["page"] =="post"){
+                    include("includes/post.php");
+                }
+
 
             }else{
                 echo '<div class="container">';
@@ -87,13 +92,8 @@ function createPost(){
                         echo "Nincsenek bejegyzések.";
                     }
                 echo '</div>';
-
             }
-            
         ?>
-
-
-    
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

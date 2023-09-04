@@ -1,5 +1,5 @@
 <?php
-include(__DIR__."/../config.php");
+include(__DIR__."/../../config.php");
 class Post {
     public $id;
     public $user_id;
@@ -80,21 +80,24 @@ class Post {
             $images .= $i . " ";
             array_push($images_arr,$i);
         }
-        
         echo '<div class="postContainer">
-            <div class="title"><h1>'.$this->getTitle().'</h1></div>
+        
+            <div class="title"><a href="?page=post&ID='.$this->getID().'"><h1>'.$this->getTitle().'</h1></a></div>
             <div class="textContent">'.$this->getContent().'</div>
-            <div class="imagesContainer" count="0" images="'.$images.'">
-                <button class="dropdown-item nextImage">Következő kép</button>
-                <button class="dropdown-item previousImage">Előző kép</button>
-    
+        <div class="imagesContainer" count="0" images="'.$images.'">
+            <button class="dropdown-item nextImage">Következő kép</button>
+            <button class="dropdown-item previousImage">Előző kép</button>
+            <div>
                 <img src="'.$images_arr[0].'">
             </div>
-            <div class="postVotes">
-                <button class="upvote" ><i class="fa-solid fa-arrow-up"></i></button>
-                <button class="upvote"><i class="fa-solid fa-arrow-down"></i></button>
-            </div>
+        </div>
+        <div class="postVotes d-flex justify-content-around">
+            <input class="postID" type="hidden" value="'.$this->getID().'">
+            <button class="vote" typeV="d"><i class="fa-solid fa-arrow-up"></i></button>
+            <button class="vote" typeV="u"><i class="fa-solid fa-arrow-down"></i></button>
+        </div>
         </div>';
+
     }
 }
 

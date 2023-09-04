@@ -44,7 +44,6 @@ $(document).ready(function() {
                 
     });
 
-
     $(".chat-input").find("button").click(function () {
         var inputValue = $(this).siblings(".custom-input").val();
         var fID = $(this).siblings(".fid").attr("value");
@@ -75,5 +74,28 @@ $(document).ready(function() {
         loadMessages();
     }, 1000);
 
+    $(".vote").click(function() {
+        var clickedButton = $(this); // Mentjük a kattintott elem referenciáját
+    
+        var postId = clickedButton.siblings(".postID").attr("value");
+        var typeV = clickedButton.attr("typeV");
+    
+        $.ajax({
+            url: "php/votePost.php",
+            method: "POST",
+            data: { postId: postId, voteType: typeV }, 
+            success: function(response) {
+                // Állítsuk be a kattintott elem színét pirosra
+                clickedButton.css("color", "red");
+    
+                // Állítsuk be a többi elem színét fehérre
+                $(".vote").not(clickedButton).css("color", "white");
+            }
+        });
+    });
+    
+    
+    
+    
 });
 

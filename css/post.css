@@ -4,6 +4,9 @@
     border: 1px solid rgb(150,150,150);
     margin-top: 10px;
     border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title,.textContent{
@@ -13,19 +16,29 @@
 .postVotes button{
     background: transparent !important;
     color:white;
-    font-size:22px;
-    border: none;
+    font-size:30px;
+    border: none;   
 }
 
 .title,.textContent,.postVotes{
     margin-top:20px;
 }
 
-.imagesContainer img{
+.imagesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+}
+
+.imagesContainer img {
     max-width: 100%;
     max-height: 500px;
     padding: 10px;
-    border:1px white solid;
+    border: 1px white solid;
     border-radius: 10px;
     margin: 50px 0px !important;
+    display: block;
+    margin: 0 auto;
 }
