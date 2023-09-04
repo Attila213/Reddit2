@@ -19,6 +19,29 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Kapcsolat</a>
                 </li>
+
+                <li class="nav-item">
+                    <?php
+
+                    if(!isset($_SESSION["userID"])){
+                        echo '<a class="nav-link" href="?page=login">Bejeletkezés</a>';
+
+                    }else{
+                        echo '<a class="nav-link" href="logout.php">Kijeletkezés</a>';
+                    }   
+                    ?>
+                </li>
+                <?php
+                    if(isset($_SESSION["userID"])){
+                        echo "<li class='nav-item'>
+                                 <a class='nav-link' href='?page=profile&ID=".$_SESSION["userID"]."'>".$_SESSION["username"]."</a>
+                            </li>";              
+
+                        }  
+                ?>
+
+                
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Szolgáltatások</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,7 +50,6 @@
                         <a class="dropdown-item" href="#">Szolgáltatás 3</a>
                         <a class="dropdown-item" href="#">Szolgáltatás 3</a>
                         <a class="dropdown-item" href="#">Szolgáltatás 4</a>
-
 
                     </div>
                 </li>

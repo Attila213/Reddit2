@@ -8,10 +8,12 @@ class Post {
     public $created_at;
     public $upvote;
     public $downvote;
+    public $conn;
+
 
     public function __construct($id, $conn) {
         $this->id = $id;
-
+        $this->conn = $conn;
         $sql = "SELECT `id`, `user_id`, `title`, `content`, `created_at`, `upvote`, `downvote` FROM `posts` WHERE `id` = $id";
         $result = $conn->query($sql);
 
@@ -54,10 +56,37 @@ class Post {
         return $this->downvote;
     }
 
+    public function getImages() {
+        $images = array();
+
+        $query = "SELECT `image_link` FROM `images` WHERE `post_id` = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $this->id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            $images[] = $row["image_link"];
+        }
+
+        $stmt->close();
+
+        return $images;
+    }
     public function drawPost() {
+        $images = "";
+        $images_arr = array();
+        foreach ($this->getImages() as $i) {
+            $images .= $i . " ";
+            array_push($images_arr,$i);
+        }
+        
         echo '<div class="postContainer">
             <div class="title"><h1>'.$this->getTitle().'</h1></div>
             <div class="textContent">'.$this->getContent().'</div>
+            <div class="imagesContainer" images="'.$images.'">
+                <img src="'.$images_arr[0].'">
+            </div>
             <div class="postVotes">
                 <button class="upvote" ><i class="fa-solid fa-arrow-up"></i></button>
                 <button class="upvote"><i class="fa-solid fa-arrow-down"></i></button>

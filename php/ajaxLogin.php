@@ -2,12 +2,11 @@
 
 include(__DIR__ . '/../config.php');
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if (isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"])) {
     $email = $_POST["email"];
     $username = $_POST["username"];
-    $password = hash("sha256", $_POST["password"]); // Hash the provided password
+    $password = hash("sha256", $_POST["password"]); 
 
-    // Prepare and execute the query
     $stmt = $conn->prepare("SELECT id FROM users WHERE email = ? AND username = ? AND password = ?");
     $stmt->bind_param("sss", $email, $username, $password);
     $stmt->execute();
@@ -17,13 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     
     if ($stmt->num_rows > 0) {
-        echo "Van";
+        echo "1";
 
         while ($stmt->fetch()) {
-            $_SESSION["userID"]="$id";
+            $_SESSION["userID"]=$id;
+            $_SESSION["username"]=$username;
+
         }
     } else {
-        echo "Nincs";
+        echo "0";
     }
 
     

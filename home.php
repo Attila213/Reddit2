@@ -7,6 +7,28 @@ $phpFiles = glob($folderPath . '*.php');
 foreach ($phpFiles as $phpFile) {
     include_once($phpFile);
 }
+
+function createPost(){
+    echo '
+    <div class="createPost postContainer" id="createPost">
+        <form autocomplete="off" method="post" action="php\uploadPost.php" enctype="multipart/form-data">
+            <div>
+                <label for="title">Írd be a hirdetmény címét</label>
+                <input type="text" id="title" name="title" placeholer="Cím">
+            </div>
+            <div>
+                <textarea name="content" cols="30" rows="10"></textarea>
+            </div>
+            <div>
+                <input id="file" name="images[]" type="file" multiple="multiple" value="fájl">
+            </div>
+            <div>
+                <button name="submit" type="submit">Küldés</button>
+            </div>
+        </form>
+    </div>';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,11 +55,6 @@ foreach ($phpFiles as $phpFile) {
         <?php
             if(isset($_GET["page"])){
 
-                if($_GET["page"] =="home"){
-                    $first = new Post(2, $conn);
-                    $first->drawPost();
-                }
-
                 if($_GET["page"] =="login"){
                     include("login.php");
                 }
@@ -47,9 +64,25 @@ foreach ($phpFiles as $phpFile) {
                 }
 
             }else{
-                $first = new Post(2, $conn);
-                $first->drawPost();
-                
+                // $first = new Post(2, $conn);
+                // $first->drawPost();
+
+                if(isset($_SESSION["userID"])){
+                    createPost();
+                }
+
+                $query = "SELECT `id`, `user_id`, `title`, `content`, `created_at`, `upvote`, `downvote` FROM `posts`";
+                $result = $conn->query($query);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $postObject = new Post($row["id"], $conn);
+                        $postObject->drawPost();
+                    }
+                } else {
+                    echo "Nincsenek bejegyzések.";
+                }
+
             }
             
         ?>
@@ -63,5 +96,9 @@ foreach ($phpFiles as $phpFile) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/navbar.js"></script>
+    <script src="js/ajaxCalls.js"></script>
+    <script src="js/postAnimations.js"></script>
+
+
 </body>
 </html>
