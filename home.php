@@ -1,20 +1,15 @@
 <?php
 if(!isset($_SESSION)) {session_start();} 
 require_once("config.php");
-$folderPath = 'php/Classes/';
-$phpFiles = glob($folderPath . '*.php');
 
-foreach ($phpFiles as $phpFile) {
-    include_once($phpFile);
-}
 
 function createPost(){
     echo '
     <div class="createPost postContainer" id="createPost">
         <form autocomplete="off" method="post" action="php\uploadPost.php" enctype="multipart/form-data">
             <div>
-                <label for="title">Írd be a hirdetmény címét</label>
-                <input type="text" id="title" name="title" placeholer="Cím">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholer="Title">
             </div>
             <div>
                 <textarea name="content" cols="30" rows="10"></textarea>
@@ -23,7 +18,7 @@ function createPost(){
                 <input id="file" name="images[]" type="file" multiple="multiple" value="fájl">
             </div>
             <div>
-                <button name="submit" type="submit">Küldés</button>
+                <button name="submit" type="submit">Send</button>
             </div>
         </form>
     </div>';
@@ -80,7 +75,7 @@ function createPost(){
                         createPost();
                     }
 
-                    $query = "SELECT `id`, `user_id`, `title`, `content`, `created_at`, `upvote`, `downvote` FROM `posts`";
+                    $query = "SELECT * FROM `posts`";
                     $result = $conn->query($query);
 
                     if ($result->num_rows > 0) {

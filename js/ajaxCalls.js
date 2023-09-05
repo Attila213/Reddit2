@@ -62,7 +62,7 @@ $(document).ready(function() {
         $.ajax({
             url: "php/getMessages.php",
             method: "POST",
-            data: { fid:fID},
+            data: { fid:fID,type:"msg"},
             success: function(response) 
             {
                 $(".sentMessages").html(response);
@@ -70,8 +70,22 @@ $(document).ready(function() {
         });
     }
 
+    function loadComments() {
+
+        $.ajax({
+            url: "php/getMessages.php",
+            method: "POST",
+            data: {type:"cmt",postID:3},
+            success: function(response) 
+            {
+                $(".commentUpdate").html(response);
+            }
+        });
+    }
+
     setInterval(function() {
         loadMessages();
+        loadComments()
     }, 1000);
 
     $(".vote").click(function() {
@@ -94,8 +108,22 @@ $(document).ready(function() {
         });
     });
     
-    
-    
-    
 });
+function sendComment(ID) {
+    post_id = ID
+    text = $(".commentsContainer .inputContainer textarea").val()
 
+    $(".commentsContainer .inputContainer textarea").val("")
+    if(text !== ""){
+        $.ajax({
+            url: "php/sendComment.php",
+            method: "POST",
+            data: { content:text,postID:post_id},
+            success: function(response) {
+                console.log(response)
+            }
+        });
+    }
+
+
+}

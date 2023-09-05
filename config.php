@@ -19,8 +19,10 @@
         die("Connection failed: ". $conn->connect_error);
     }
 
-    foreach (glob("assets/php/Classes/*.php") as $filename){
-        include($filename);
-    }    
+    $folderPath = 'php/Classes/';
+    $phpFiles = glob($folderPath . '*.php');
 
+    foreach ($phpFiles as $phpFile) {
+        include_once($phpFile);
+    }
 ?>

@@ -11,14 +11,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Kezdőlap</a>
+                    <a class="nav-link" href="/Reddit2">Kezdőlap</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Portfólió</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kapcsolat</a>
-                </li>
+
 
                 <li class="nav-item">
                     <?php
