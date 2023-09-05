@@ -62,12 +62,12 @@ class Comment {
     public function drawComment(){
         echo "
         <div class='comment'>
-            <div class='user'>".$this->getUsername()."</div>
-            <div class='content'>".
-            $this->getContent()
-            ."</div>
-        </div>";
-        // <button cID='25'>answer</button>
+        <div class='user'>".$this->getUsername()."</div>
+        <div class='content'>".
+        $this->getContent()
+        .'</div>
+            <button class="answer" onclick="answerClick('.$this->getID().')"><i class="fa-solid fa-arrow-up"></i></button>
+        </div>';
     }
 }
 

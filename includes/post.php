@@ -11,8 +11,6 @@
         </div>
         <hr>
         <div class="commentUpdate">
-            <?php
-            ?>
 
         </div>
     </div>

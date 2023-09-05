@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $answer_to = null
+    
     $(".formRegister #sendButton").click(function() {
         var usernameValue = $("#us").val();
         var emailValue = $("#em").val();
@@ -71,11 +73,12 @@ $(document).ready(function() {
     }
 
     function loadComments() {
+        postID = $(".vote").siblings(".postID").attr("value")
 
         $.ajax({
             url: "php/getMessages.php",
             method: "POST",
-            data: {type:"cmt",postID:3},
+            data: {type:"cmt",postID:postID},
             success: function(response) 
             {
                 $(".commentUpdate").html(response);
@@ -89,8 +92,7 @@ $(document).ready(function() {
     }, 1000);
 
     $(".vote").click(function() {
-        var clickedButton = $(this); // Mentjük a kattintott elem referenciáját
-    
+        var clickedButton = $(this);
         var postId = clickedButton.siblings(".postID").attr("value");
         var typeV = clickedButton.attr("typeV");
     
@@ -107,8 +109,13 @@ $(document).ready(function() {
             }
         });
     });
+
     
 });
+function answerClick(id){
+    alert(id)
+}
+
 function sendComment(ID) {
     post_id = ID
     text = $(".commentsContainer .inputContainer textarea").val()
@@ -127,3 +134,4 @@ function sendComment(ID) {
 
 
 }
+
