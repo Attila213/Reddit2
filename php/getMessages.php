@@ -9,12 +9,11 @@
         $result = mysqli_query($conn, $query);
 
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "<p>". $row['message']."</p>";
+            echo "<p user='".$_SESSION["userID"]."'>". $row['message']."</p>";
         }
     }
 
     if ($_POST["type"] == "cmt" && isset($_POST["postID"])) {
-        
         $query = "SELECT * FROM comments where post_id = ".$_POST["postID"]." ORDER BY created_at DESC";
         $result = mysqli_query($conn, $query);
 

@@ -24,6 +24,16 @@ function createPost(){
     </div>';
 }
 
+
+
+
+$folderPath = 'php/Classes/';
+$phpFiles = glob($folderPath . '*.php');
+
+foreach ($phpFiles as $phpFile) {
+    include_once($phpFile);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -34,18 +44,22 @@ function createPost(){
     <title>Reddit Stílusú Navigációs Sáv</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/post.css">
-    <link rel="stylesheet" href="css/post.css">
-    <link rel="stylesheet" href="css/profile.css">
+    
+    <?php
+        $folderPath = 'css/';
+        $phpFiles = glob($folderPath . '*.css');
+
+        foreach ($phpFiles as $phpFile) {
+            echo '<link rel="stylesheet" href="'.$phpFile.'">';
+        }
+
+    ?>
 
 
 </head>
 <body>
     <?php
         include("includes/navbar.php");
-
     ?>
     
         <?php
@@ -60,33 +74,28 @@ function createPost(){
                 }
 
                 if($_GET["page"] =="profile"){
-                    include("includes/profile.php");
+                    if(!isset($_SESSION["userID"])){
+                        include("includes/login.php");
+                    }else{
+                        include("includes/profile.php");
+                    }
                 }
 
                 if($_GET["page"] =="post"){
                     include("includes/post.php");
                 }
 
+                if($_GET["page"] =="friends"){
+                    if(!isset($_SESSION["userID"])){
+                        include("includes/login.php");
+                    }else{
+                        include("includes/friends.php");
+                    }
+                }
+
 
             }else{
-                echo '<div class="container">';
-
-                    if(isset($_SESSION["userID"])){
-                        createPost();
-                    }
-
-                    $query = "SELECT * FROM `posts`";
-                    $result = $conn->query($query);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $postObject = new Post($row["id"], $conn);
-                            $postObject->drawPost();
-                        }
-                    } else {
-                        echo "Nincsenek bejegyzések.";
-                    }
-                echo '</div>';
+                include("includes/home.php");
             }
         ?>
 

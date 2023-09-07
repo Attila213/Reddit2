@@ -1,0 +1,22 @@
+.userContainer .username{
+    background-color: rgb(150,150,150);
+    padding: 20px;
+    font-size: 20px;
+}
+
+.userContainer{
+    margin: 10px 0px;
+}
+
+
+.userContainer button{
+    font-size: 20px;
+    position: absolute;
+}
+
+.alreadFriend{
+    display: none;
+}
+
+
+  

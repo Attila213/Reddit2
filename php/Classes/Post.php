@@ -82,19 +82,27 @@ class Post {
         }
         echo '<div class="postContainer">
         
-            <div class="title"><a href="?page=post&ID='.$this->getID().'"><h1>'.$this->getTitle().'</h1></a></div>
+            <div class="title"><a
+            ';
+            if(isset($_SESSION["userID"])){
+                echo 'href="?page=post&ID='.$this->getID().'"';
+            }else{
+                echo 'href="?page=login"';
+            }
+            echo '>'.$this->getTitle().'</a>
             <div class="textContent">'.$this->getContent().'</div>
-        <div class="imagesContainer" count="0" images="'.$images.'">
-            <button class="dropdown-item nextImage">Következő kép</button>
-            <button class="dropdown-item previousImage">Előző kép</button>
-            <div>
-                <img src="'.$images_arr[0].'">
-            </div>
-        </div>
-        <div class="postVotes d-flex justify-content-around">
+                <div class="imagesContainer" count="0" images="'.$images.'">
+                    <button class="dropdown-item nextImage">Következő kép</button>
+                    <button class="dropdown-item previousImage">Előző kép</button>
+                    <div>
+                        <img src="'.$images_arr[0].'">
+                    </div>
+                </div>
+            <div class="postVotes d-flex justify-content-around">
             <input class="postID" type="hidden" value="'.$this->getID().'">
             <button class="vote" typeV="d"><i class="fa-solid fa-arrow-up"></i></button>
             <button class="vote" typeV="u"><i class="fa-solid fa-arrow-down"></i></button>
+            
         </div>
         </div>';
 

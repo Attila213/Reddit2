@@ -18,11 +18,4 @@
     if ($conn->connect_error) {
         die("Connection failed: ". $conn->connect_error);
     }
-
-    $folderPath = 'php/Classes/';
-    $phpFiles = glob($folderPath . '*.php');
-
-    foreach ($phpFiles as $phpFile) {
-        include_once($phpFile);
-    }
 ?>

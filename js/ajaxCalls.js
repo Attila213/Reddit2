@@ -81,6 +81,7 @@ $(document).ready(function() {
             data: {type:"cmt",postID:postID},
             success: function(response) 
             {
+                // console.log(response)
                 $(".commentUpdate").html(response);
             }
         });
@@ -101,15 +102,39 @@ $(document).ready(function() {
             method: "POST",
             data: { postId: postId, voteType: typeV }, 
             success: function(response) {
-                // Állítsuk be a kattintott elem színét pirosra
                 clickedButton.css("color", "red");
     
-                // Állítsuk be a többi elem színét fehérre
                 $(".vote").not(clickedButton).css("color", "white");
             }
         });
     });
 
+    $(".addF").click(function(){
+        $(this).fadeOut(300)
+        let id = $(this).parent().attr("id");
+
+        $.ajax({
+            url: "php/addORremoveFriend.php",
+            method: "POST",
+            data: {id:id,type:"add"},
+
+        });
+        
+    });
+
+    $(".removeF").click(function(){
+        let id = $(this).parent().attr("id");
+
+        let addF = $(this).parent().children(".addF")
+        addF.fadeIn(300)
+
+        $.ajax({
+            url: "php/addORremoveFriend.php",
+            method: "POST",
+            data: {id:id,type:"remove"},
+        });
+        
+    });
     
 });
 function answerClick(id){

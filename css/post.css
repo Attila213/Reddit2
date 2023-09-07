@@ -24,6 +24,10 @@
     margin-top:20px;
 }
 
+.title a{
+    font-size:30px;
+}
+
 .imagesContainer {
     display: flex;
     flex-direction: column;

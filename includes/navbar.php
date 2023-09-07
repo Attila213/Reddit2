@@ -15,7 +15,7 @@
                 </li>
 
 
-                <li class="nav-item">
+                <li class="nav-item active">
                     <?php
 
                     if(!isset($_SESSION["userID"])){
@@ -28,16 +28,23 @@
                 </li>
                 <?php
                     if(isset($_SESSION["userID"])){
-                        echo "<li class='nav-item'>
-                                 <a class='nav-link' href='?page=profile&ID=".$_SESSION["userID"]."'>".$_SESSION["username"]."</a>
-                            </li>";              
-
-                        }  
+                    echo '<li class="nav-item active">
+                        <a class="nav-link" href="?page=friends">Add friends</a>
+                        </li>';
+                    }
                 ?>
 
                 
+                <?php
+                    if(isset($_SESSION["userID"])){
+                        echo "<li class='nav-item active'>
+                            <a class='nav-link' href='?page=profile&ID=".$_SESSION["userID"]."'>".$_SESSION["username"]."</a>
+                        </li>";              
 
-                <li class="nav-item dropdown">
+                    }  
+                ?>
+
+                <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Szolgáltatások</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Szolgáltatás 1</a>
