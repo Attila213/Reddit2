@@ -81,7 +81,6 @@ $(document).ready(function() {
             data: {type:"cmt",postID:postID},
             success: function(response) 
             {
-                // console.log(response)
                 $(".commentUpdate").html(response);
             }
         });

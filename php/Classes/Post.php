@@ -73,6 +73,7 @@ class Post {
 
         return $images;
     }
+
     public function drawPost() {
         $images = "";
         $images_arr = array();
@@ -99,13 +100,42 @@ class Post {
                     </div>
                 </div>
             <div class="postVotes d-flex justify-content-around">
-            <input class="postID" type="hidden" value="'.$this->getID().'">
-            <button class="vote" typeV="d"><i class="fa-solid fa-arrow-up"></i></button>
-            <button class="vote" typeV="u"><i class="fa-solid fa-arrow-down"></i></button>
+            <input class="postID" type="hidden" value="'.$this->getID().'">';
+            
+            if($this->getVoteType() == "u"){
+                echo '<button class="vote alreadyvoted" typeV="u"><i class="fa-solid fa-arrow-up"></i></button>
+                <button class="vote" typeV="d"><i class="fa-solid fa-arrow-down"></i></button>';
+
+            }elseif($this->getVoteType() == "d"){
+                echo '<button class="vote" typeV="u"><i class="fa-solid fa-arrow-up"></i></button>
+                <button class="vote alreadyvoted" typeV="d"><i class="fa-solid fa-arrow-down"></i></button>';
+            }
+            else{
+                echo '<button class="vote" typeV="u"><i class="fa-solid fa-arrow-up"></i></button>
+                <button class="vote" typeV="d"><i class="fa-solid fa-arrow-down"></i></button>';
+            }
+            echo '
+            
             
         </div>
         </div>';
 
+    }
+
+    public function getVoteType() {
+        $query = "SELECT vote_type FROM `post_votes` WHERE post_id = ? AND user_id = ?";
+    
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ii", $this->id, $_SESSION["userID"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row["vote_type"];
+        } else {
+            return null; 
+        }
     }
 }
 

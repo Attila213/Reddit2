@@ -87,3 +87,7 @@
 .commentsContainer .comment .answer i{
     transform: rotate(45deg);
 }
+
+.alreadyvoted{
+    color:red !important;
+}

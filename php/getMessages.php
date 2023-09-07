@@ -9,7 +9,12 @@
         $result = mysqli_query($conn, $query);
 
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "<p user='".$_SESSION["userID"]."'>". $row['message']."</p>";
+            if($row["sender_id"] == $_SESSION["userID"]){
+                echo "<p class='alreadyvoted'>". $row['message']."</p>";
+            }
+            else{
+                echo "<p>". $row['message']."</p>";
+            }
         }
     }
 

@@ -54,8 +54,6 @@ class User {
 
     public function boolFriends($userID1,$userID2){
         $query = "SELECT * FROM friendships WHERE (user1_id = ? AND user2_id = ?) OR (user2_id = ? AND user1_id = ?)";
-        // $query2 = "SELECT * FROM friendships WHERE (user1_id = ".$userID1." AND user2_id = ".$userID2.") OR (user2_id = ".$userID2." AND user1_id = ".$userID1.")";
-        // echo $query2;
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("iiii", $userID1, $userID2, $userID2, $userID1);
