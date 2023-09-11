@@ -5,6 +5,8 @@ echo '<div class="container">';
 if(isset($_SESSION["userID"])){
     createPost();
 }
+
+//végigmegy a bejegyzéseken és megrajzolja őket
 $query = "SELECT * FROM `posts`";
 $result = $conn->query($query);
 if ($result->num_rows > 0) {
@@ -14,6 +16,6 @@ if ($result->num_rows > 0) {
         echo '</div>';
     }
 } else {
-    echo "Nincsenek bejegyzések.";
+    echo "There are no posts yet.";
 }
 ?>

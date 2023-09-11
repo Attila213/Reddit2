@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    //számolja hogy hányadik képnél van és az alapján vált képet ha még tud
     $(".nextImage").click(function(){
 
         var images = $(this).parent().attr("images").split(" ")

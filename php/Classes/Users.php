@@ -11,6 +11,7 @@ class User {
         $this->fetchUserData();
     }
 
+    //feldarabolja a kapott azonosító adatait és beleteszi a megfelelő változókba
     private function fetchUserData() {
         $query = "SELECT * FROM users WHERE id = ?";
         $stmt = $this->conn->prepare($query);
@@ -26,6 +27,7 @@ class User {
         
         $stmt->close();
     }
+    
 
     public function getId() {
         return $this->id;
@@ -39,6 +41,7 @@ class User {
         return $this->email;
     }
 
+    //készít egy "részt" ahol kiírja a felhasználó adatait
     public function displayUserInfo() {
         echo '<div class="userContainer col-lg-3 col-md-3 col-sm-6 col-12 row">
             <div class="username col-8">' .$this->username . '</div>';
@@ -52,6 +55,7 @@ class User {
 
     }
 
+    //eldönti hogy két felhazsnáló barátok-e (tudom hogy ez kicsit sérti az egységbezárás törvényét)
     public function boolFriends($userID1,$userID2){
         $query = "SELECT * FROM friendships WHERE (user1_id = ? AND user2_id = ?) OR (user2_id = ? AND user1_id = ?)";
 

@@ -74,6 +74,7 @@ class Post {
         return $images;
     }
 
+    //megrajzolja a post-ot aminek az azonosítója aza adot azonosító
     public function drawPost() {
         $images = "";
         $images_arr = array();
@@ -85,6 +86,7 @@ class Post {
         
             <div class="title"><a
             ';
+            //ha felhasználó be van jelentkezve akkor ha rákattint a címre akkokr nem a kommentek hanme a bejeletkezés jelenik meg
             if(isset($_SESSION["userID"])){
                 echo 'href="?page=post&ID='.$this->getID().'"';
             }else{
@@ -93,8 +95,8 @@ class Post {
             echo '>'.$this->getTitle().'</a>
             <div class="textContent">'.$this->getContent().'</div>
                 <div class="imagesContainer" count="0" images="'.$images.'">
-                    <button class="dropdown-item nextImage">Következő kép</button>
-                    <button class="dropdown-item previousImage">Előző kép</button>
+                    <button class="dropdown-item nextImage">Next image</button>
+                    <button class="dropdown-item previousImage">Previous image</button>
                     <div>
                         <img src="'.$images_arr[0].'">
                     </div>
@@ -102,6 +104,7 @@ class Post {
             <div class="postVotes d-flex justify-content-around">
             <input class="postID" type="hidden" value="'.$this->getID().'">';
             
+            //attól függően rajzolja meg a szavazásgombokat hogy már van-e jelölve
             if($this->getVoteType() == "u"){
                 echo '<button class="vote alreadyvoted" typeV="u"><i class="fa-solid fa-arrow-up"></i></button>
                 <button class="vote" typeV="d"><i class="fa-solid fa-arrow-down"></i></button>';
@@ -122,6 +125,7 @@ class Post {
 
     }
 
+    //lekéri hogy a poston milyen típusú szavazat van ha van egyáltalán
     public function getVoteType() {
         $query = "SELECT vote_type FROM `post_votes` WHERE post_id = ? AND user_id = ?";
     

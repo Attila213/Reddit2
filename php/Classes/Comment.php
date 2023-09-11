@@ -11,6 +11,7 @@ class Comment {
     private $created_at;
     private $username;
 
+    //lekéri és beteszi a változókba a kapott adatokat
     public function __construct($conn, $commentId) {
         $query = "SELECT comments.id,username,user_id,post_id,parent_comment_id,content,created_at FROM `comments` Inner JOIN users on user_id=users.id where comments.id= ".$commentId;
         $stmt = $conn->prepare($query);
@@ -59,6 +60,7 @@ class Comment {
         return $this->username;
     }
    
+    //megrajzolja a kommentet
     public function drawComment(){
         echo "
         <div class='comment'>

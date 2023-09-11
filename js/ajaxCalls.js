@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $answer_to = null
     
+    //a beírt adatokat beinzertálja az adatbázisba ha még nincs használva
     $(".formRegister #sendButton").click(function() {
         var usernameValue = $("#us").val();
         var emailValue = $("#em").val();
@@ -23,6 +24,7 @@ $(document).ready(function() {
                 
     });
 
+    //lefuttat egy php-t ami eldönti hogy sikerült-e a bejelentkezés ezt válaszba el is küldi
     $(".formLogin #sendButton").click(function() {
         var usernameValue = $("#us").val();
         var emailValue = $("#em").val();
@@ -35,7 +37,6 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response)
                 if(response==1){
-                    alert("Sikeres bejelentkezés");
                     window.location.href = "/Reddit2/";
                 }
                 else{
@@ -46,6 +47,7 @@ $(document).ready(function() {
                 
     });
 
+    // sendMessage.php-ban a beírt adatokat feldolgozva beinzerálja őket adatbázisb
     $(".chat-input").find("button").click(function () {
         var inputValue = $(this).siblings(".custom-input").val();
         var fID = $(this).siblings(".fid").attr("value");
@@ -59,6 +61,7 @@ $(document).ready(function() {
         });
     });
 
+    //minden lefutásál visszadok egy html tag-et ami tartalmazza a két ember közti beszélgetés tartalmát
     function loadMessages() {
         var fID = $(".chat-input").find("button").siblings(".fid").attr("value");
         $.ajax({
@@ -72,6 +75,7 @@ $(document).ready(function() {
         });
     }
 
+    //minden lefutásál visszadok egy html tag-et ami tartalmazza az adott post kommentjeit
     function loadComments() {
         postID = $(".vote").siblings(".postID").attr("value")
 
@@ -91,6 +95,7 @@ $(document).ready(function() {
         loadComments()
     }, 1000);
 
+    //kattintásra pirosra változtatja a vote gombot és meghívja az oldalt ahol az adatbázisműveleteket végrehajtom a votePost.php-ban
     $(".vote").click(function() {
         var clickedButton = $(this);
         var postId = clickedButton.siblings(".postID").attr("value");
@@ -108,6 +113,7 @@ $(document).ready(function() {
         });
     });
 
+    //kattintásra meghívja az oldalt ahol az adatbázisműveleteket végrehajtom a addORremoveFriend.ph-ban (barát hozzáadaása)
     $(".addF").click(function(){
         $(this).fadeOut(300)
         let id = $(this).parent().attr("id");
@@ -120,7 +126,8 @@ $(document).ready(function() {
         });
         
     });
-
+    
+    //uyganazt hívja meg mint az addF csak más kódot adok át így másik résaz fut le (barát törlése)
     $(".removeF").click(function(){
         let id = $(this).parent().attr("id");
 
@@ -136,10 +143,8 @@ $(document).ready(function() {
     });
     
 });
-function answerClick(id){
-    alert(id)
-}
 
+//elkülddi sendComment.php ra az adatokat ahol beinzertálja az adatokat az adatbázisba
 function sendComment(ID) {
     post_id = ID
     text = $(".commentsContainer .inputContainer textarea").val()

@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/Reddit2">Kezdőlap</a>
+                    <a class="nav-link" href="/Reddit2">Home</a>
                 </li>
 
 
@@ -19,10 +19,10 @@
                     <?php
 
                     if(!isset($_SESSION["userID"])){
-                        echo '<a class="nav-link" href="?page=login">Bejeletkezés</a>';
+                        echo '<a class="nav-link" href="?page=login">Login</a>';
 
                     }else{
-                        echo '<a class="nav-link" href="logout.php">Kijeletkezés</a>';
+                        echo '<a class="nav-link" href="logout.php">Logout</a>';
                     }   
                     ?>
                 </li>
@@ -45,13 +45,13 @@
                 ?>
 
                 <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Szolgáltatások</a>
+                    <a class="nav-link dropdown-toggle-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Szolgáltatás 1</a>
-                        <a class="dropdown-item" href="#">Szolgáltatás 2</a>
-                        <a class="dropdown-item" href="#">Szolgáltatás 3</a>
-                        <a class="dropdown-item" href="#">Szolgáltatás 3</a>
-                        <a class="dropdown-item" href="#">Szolgáltatás 4</a>
+                        <a class="dropdown-item" href="#">Service 1</a>
+                        <a class="dropdown-item" href="#">Service 2</a>
+                        <a class="dropdown-item" href="#">Service 3</a>
+                        <a class="dropdown-item" href="#">Service 3</a>
+                        <a class="dropdown-item" href="#">Service 4</a>
 
                     </div>
                 </li>

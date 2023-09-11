@@ -11,8 +11,6 @@ if(isset($_POST['submit']) && isset($_POST["content"]) && isset($_POST["title"])
     $last_id = mysqli_insert_id($conn);
 
     if (isset($_FILES['images'])) {
-        // File was uploaded
-
         $uploadEndpoint = 'https://api.imgur.com/3/image';
         $clientID = '27746b2df94ebe0';
 

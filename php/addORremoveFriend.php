@@ -2,6 +2,7 @@
 include(__DIR__ . '/../config.php');
 
 
+//beinzertál egy baráti kapcsolatot oda-vissza
 if (isset($_POST["id"]) && $_POST["type"] =="add") {
 
     $insertQuery = "INSERT INTO friendships (user1_id, user2_id) VALUES (?, ?)";
@@ -14,9 +15,10 @@ if (isset($_POST["id"]) && $_POST["type"] =="add") {
     $stmt->bind_param("ii", $_SESSION["userID"], $_POST["id"]);
     $stmt->execute();
 
-    echo "mostmár a barátod ".$_POST["id"];
+    echo $_POST["id"]. "is your friend now";
 }
 
+//kitörli a baráti kapcsolatokat két ember közt
 if (isset($_POST["id"]) && $_POST["type"] == "remove") {
 
     if (isset($_POST["id"]) && $_POST["type"]="remove") {
@@ -26,7 +28,7 @@ if (isset($_POST["id"]) && $_POST["type"] == "remove") {
         $stmt1->execute();
     }
 
-    echo "mostmár ".$_POST["id"]."nam a barátod";
+    echo "mostmár ".$_POST["id"]." not your friend anymore";
 
     
 }
